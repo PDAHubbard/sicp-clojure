@@ -1,8 +1,14 @@
 (ns sicp-clojure.sec1-1
   (:gen-class))
 
-(defn testme [a]
-	(* a 2))
+(defn square [x]
+	(* x x))
+
+(defn sum-of-squares [x y]
+	(+ (square x) (square y)))
+
+(defn f [a]
+	(sum-of-squares (+ a 1) (* a 2)))
 
 (def a 3)
 (def b (+ a 1))
@@ -37,10 +43,25 @@
 
 (defn ex1-2 [x]
 	(println
-	(/ (+ 5 4 (- 2 (- 3 (+ 6 (/ 4 5)))) (* 3 (- 6 2) (- 2 7))))
-	)
-)
+	(/ (+ 5 4 (- 2 (- 3 (+ 6 (/ 4 5))))) 
+	   (* 3 (- 6 2) (- 2 7)))))
 
+
+
+(defn ex1-3 [a b c]
+;return sum of squares of the two larger numbers
+;method: sum ALL squares, substract square of smallest
+	
+	(- (apply + (map square (vector a b c)))
+		 (square (min a b c))))
+
+(defn p []
+	p)
+
+(defn test [x y]
+	(if (= x 0)
+		0
+		y))
 
 
   
