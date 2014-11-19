@@ -76,6 +76,15 @@
 	(ex111help 0 1 2 n))
 
 
+;Pascal's triangle, left-aligned
+(defn pascal [col row]
+	(if (and (= 1 col) (= 1 row))
+		1
+		(if (= 1 col)
+		1
+		(+ (pascal col (- row 1)) (pascal (- col 1) (- row 1))))))
+
+
 
 
 

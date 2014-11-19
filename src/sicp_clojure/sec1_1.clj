@@ -13,6 +13,39 @@
 (def a 3)
 (def b (+ a 1))
 
+(defn sum-square-larger [a b c]
+  (defn square [n] (* n n))
+  (- (apply + (map square (vector a b c)))
+  	(square (min a b c))))
+
+ (defn good-enough? [old-guess new-guess]
+ 		(< (/ (Math/abs (- old-guess new-guess))
+ 					old-guess)
+ 				0.0000001))
+
+ (defn average [x y] 
+ 	(/ (+ x y) 2))
+
+ (defn improve-sqrt [guess n]
+ 	(average guess (/ n guess)))
+
+ 	
+(defn improve-cube [guess n]
+		(/ (+ (/ n (* guess guess)) (* 2 guess)) 3))
+
+(defn estimate-root [improve-func guess n]
+	(let [new (improve-func guess n)]
+		(if (good-enough? guess new) new
+			(estimate-root improve-func new n))))
+ 
+
+(defn sqrt [n]
+ 		(estimate-root improve-sqrt 1.0 n))
+
+(defn cube-root [n]
+	(estimate-root improve-cube 1.0 n))
+
+
 (defn ex1-1 [x]
   (println (+ 5 3 4))
   (println (- 9 1))
@@ -58,10 +91,6 @@
 (defn p []
 	p)
 
-(defn test [x y]
-	(if (= x 0)
-		0
-		y))
 
 
   
