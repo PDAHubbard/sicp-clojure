@@ -52,8 +52,31 @@
 				:else (+ (cc amount (- kinds-of-coins 1))
 								 (cc (- amount (first-denomination kinds-of-coins)) kinds-of-coins))))
 								 
-								 
-
 (defn count-change [amount]
 	(cc amount 5))
+
+;Exercise 1.11
+;f(n)=n if n<3, f(n)=f(n-1)+2f(n-2)+3f(n-3) if n>=3
+
+;Recursive
+(defn ex1-11 [n]
+	(if (< n 3)
+			n
+			(+ 			(ex1-11(- n 1)) 
+				 (* 2 (ex1-11(- n 2))) 
+				 (* 3 (ex1-11(- n 3))))))
+
+;Iterative
+;Solution from http://community.schemewiki.org/?sicp-ex-1.11
+(defn ex1-11-iter [n]
+	(defn ex111help [a b c m]
+		(if (< m 3)
+			a
+			(ex111help (b c (+ c (* 2 b) (* 3 a) (dec m))))))
+	(ex111help 0 1 2 n))
+
+
+
+
+
 
