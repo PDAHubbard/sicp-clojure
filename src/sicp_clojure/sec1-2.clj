@@ -76,16 +76,12 @@
 	(ex111help 0 1 2 n))
 
 
+;Exercise 1.12
 ;Pascal's triangle, left-aligned
 (defn pascal [col row]
-	(if (and (= 1 col) (= 1 row))
+	(if (or (= 0 col) (= col row))
 		1
-		(if (= 1 col)
-		1
-		(+ (pascal col (- row 1)) (pascal (- col 1) (- row 1))))))
+		(+ (pascal (- col 1) (- row 1)) (pascal col (- row 1)))))
 
-
-
-
-
-
+;testing Pascal's function
+;(for [row (range 0 10) col (range 0 (inc row))] (pascal col row))
