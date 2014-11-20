@@ -105,7 +105,6 @@
 
 ;Exercise 1.16
 ;implement fast-expt with an INVARIANT QUALITY
-
 (defn fast-expr-iter [b n]
 	(defn help [a b n]
 		(cond (= n 0) a														;exit condition
