@@ -1,4 +1,5 @@
 (ns sicp-clojure.sec1-2
+	(:use [sicp-clojure.sec1-1])
 	(:gen-class))
 
 (defn factorial [n]
@@ -27,9 +28,6 @@
 				(= x 0) (* 2 y)
 				(= y 1) 2
 				:else (A (- x 1) (A x (- y 1)))))
-
-(defn f [n]
-	(A 0 n))
 
 (defn fib-iter [a b count]
 	(if (= count 0)
@@ -85,3 +83,37 @@
 
 ;testing Pascal's function
 ;(for [row (range 0 10) col (range 0 (inc row))] (pascal col row))
+
+;1.2.4 Exponentiation
+(defn expt [b n]
+;Linear Recursive Process = O(n) steps + O(n) space
+	(if (= n 0)
+		1
+		(*' b (expt b (dec n)))))
+
+(defn expt-iter [b counter product]
+;Linear iteration = O(n) steps and O(1) space
+	(if (= counter 0)
+	product
+	(expt-iter b (dec counter) (*' b product))))
+
+;O(log n) growth
+(defn fast-expt [b n]
+	(cond (= n 0) 1
+				(even? n) (square (fast-expt b (/ n 2)))
+				:else (* b (fast-expt b (dec n)))))
+
+;Exercise 1.16
+;implement fast-expt with an INVARIANT QUALITY
+
+(defn fast-expr-iter [b n]
+	(defn help [a b n]
+		(cond (= n 0) a														;exit condition
+			(even? n) (help a (square b) (/ n 2))
+			(odd? n)	(help (* a b) b (dec n))))
+	 (help 1 b n))															;iq starts at 1
+
+
+
+
+			
