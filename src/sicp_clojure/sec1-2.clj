@@ -112,7 +112,13 @@
 			(odd? n)	(help (* a b) b (dec n))))
 	 (help 1 b n))															;iq starts at 1
 
-
+;Exercise 1.17
+;Iterative multiplication in O(log n)
+(defn mult-iter [a b]
+	(cond (or (= a 0) (= b 0)) 0
+		(even? b) (* 2 (mult-iter a (/ b 2)))
+		:else (+ a (mult-iter a (dec b)))))
+		
 
 
 			
