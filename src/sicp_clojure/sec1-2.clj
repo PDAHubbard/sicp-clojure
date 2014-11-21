@@ -119,6 +119,30 @@
 		(even? b) (* 2 (mult-iter a (/ b 2)))
 		:else (+ a (mult-iter a (dec b)))))
 		
+;Exercise 1.18
+;Fast Multiplacation with invariant quality
+(defn fast-mult-iter [a b]
+	(defn help [i a b]
+		(cond (or (= a 0) (= b 0)) i
+		(even? b) (help i (* 2 a) (/ b 2))
+		:else (help (+ i a) a (dec b))))
+		(help 0 a b))
 
-
-			
+;Exercise 1.19
+;Fib logarithmic
+(defn fib-log [n]
+	(defn fib-iter [a b p q count]
+		(cond (= count 0) b
+				  (even? count) (fib-iter a
+				  												b
+				  												p'
+				  												q'
+				  												(/ count 2))
+				   :else (fib-iter (+ (* b q) (* a q) (* a p))
+				   								 (+ (* b q) (* a q))
+				   								 p
+				   								 q
+				   								 (dec count))))
+		(fib-iter 1 0 0 1 n))
+		
+		
