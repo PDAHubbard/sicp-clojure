@@ -77,7 +77,7 @@
 ;Exercise 1.12
 ;Pascal's triangle, left-aligned
 (defn pascal [col row]
-	(if (or (= 0 col) (= col row))
+	( if (or (= 0 col) (= col row))
 		1
 		(+ (pascal (- col 1) (- row 1)) (pascal col (- row 1)))))
 
@@ -130,19 +130,18 @@
 
 ;Exercise 1.19
 ;Fib logarithmic
-(defn fib-log [n]
-	(defn fib-iter [a b p q count]
-		(cond (= count 0) b
-				  (even? count) (fib-iter a
-				  												b
-				  												p'
-				  												q'
-				  												(/ count 2))
-				   :else (fib-iter (+ (* b q) (* a q) (* a p))
-				   								 (+ (* b q) (* a q))
-				   								 p
-				   								 q
-				   								 (dec count))))
-		(fib-iter 1 0 0 1 n))
-		
+
+;1.2.6 Testing for Primality
+
+;Searching for divisors
+(defn divides? [a b]
+  (= (remainder b a) 0))
+
+(defn find-divisor [n test-divisor]
+  (cond (> (square test-divisor) n) n
+        (divides? test-divisor n) test-divisor
+        :else (find-divisor n (inc test-divisor))))
+
+(defn smallest-divisor [n]
+  (find-divisor n 2))
 		
