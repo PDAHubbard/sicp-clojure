@@ -1,5 +1,6 @@
 (ns sicp-clojure.core
-  (:gen-class))
+  (:gen-class)
+  (:use sicp-clojure.sec1-1, sicp-clojure.sec1-2))
 
 (defn -main
   []
