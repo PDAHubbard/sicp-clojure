@@ -10,3 +10,6 @@
 ; switch namespace (in REPL) = (in-ns 'namespace)
 ; See what namespaces exist = (all-ns)
 
+; Namespaces with DASHES have them replaced with UNDERSCORES in the filenames
+
+

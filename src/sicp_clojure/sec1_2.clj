@@ -159,10 +159,24 @@
 
 (defn fast-prime? [n times]
   (cond (= times 0) true
-        (fermat-test n) fast-prime? n (dec times)
+        (fermat-test n) (fast-prime? n (dec times))
         :else false))
 
 		
 (defn prime? [n]
   (= n (smallest-divisor n)))
 
+;Exercise 1.22
+;1. Get a range of numbers
+;2. Get consecutive odd numbers in this range
+;3. Check each for primality
+;4. Return sorted list lowest to highest
+;5. Filter out all but first 3
+
+(defn search-for-primes [lo hi]
+  (for [x
+          (range (if (even? lo) (inc lo) lo) hi 2)
+          :when (fast-prime? x 20)] x)
+  )
+
+;(take 3 (search-for-primes 1000 1100))
