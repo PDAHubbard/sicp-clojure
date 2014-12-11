@@ -135,7 +135,7 @@
 
 ;Searching for divisors
 (defn divides? [a b]
-  (= (remainder b a) 0))
+  (= (rem b a) 0))
 
 (defn find-divisor [n test-divisor]
   (cond (> (square test-divisor) n) n
