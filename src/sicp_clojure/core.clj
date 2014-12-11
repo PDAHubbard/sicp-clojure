@@ -1,5 +1,6 @@
 (ns sicp-clojure.core
-  (:gen-class))
+  (:gen-class)
+  (:use sicp-clojure.sec1-1, sicp-clojure.sec1-2))
 
 (defn -main
   []
@@ -8,4 +9,7 @@
 
 ; switch namespace (in REPL) = (in-ns 'namespace)
 ; See what namespaces exist = (all-ns)
+
+; Namespaces with DASHES have them replaced with UNDERSCORES in the filenames
+
 
