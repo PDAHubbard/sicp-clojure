@@ -2,6 +2,9 @@
 	(:use [sicp-clojure.sec1-1])
 	(:gen-class))
 
+;For Exercise 1.23 
+(declare next-td)
+
 (defn factorial [n]
 	(if (= n 1)
 		1
@@ -140,7 +143,7 @@
 (defn find-divisor [n test-divisor]
   (cond (> (square test-divisor) n) n
         (divides? test-divisor n) test-divisor
-        :else (find-divisor n (inc test-divisor))))
+        :else (find-divisor n (next-td test-divisor))))
 
 (defn smallest-divisor [n]
   (find-divisor n 2))
@@ -180,3 +183,10 @@
   )
 
 ;(take 3 (search-for-primes 1000 1100))
+
+
+;Exercise 1.23
+;next - returns 3 if the input is 2, otherwise returns input+2
+(defn next-td [input]
+	(if (= 2 input) 3
+	(+ input 2)))
